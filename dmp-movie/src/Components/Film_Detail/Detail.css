@@ -1,0 +1,120 @@
+:where(.css-dev-only-do-not-override-j9bb5n).ant-breadcrumb a {
+    color: white;
+    transition:  all 0.25s  ease;
+}
+:where(.css-dev-only-do-not-override-j9bb5n).ant-breadcrumb a:hover{
+    color: gold;
+}
+:where(.css-dev-only-do-not-override-j9bb5n).ant-breadcrumb [class^="ant-breadcrumb"]{
+    color: #FF8A00;
+}
+.breadcrumb{
+    padding-left: 10px;
+}
+.filmDetail__img{
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    border: 1px solid white;
+}
+.filmDetail_surroImg{
+    width: 100%;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 50%;
+    position: relative;
+    padding-left: 40px;
+}
+.filmDetail__surroTitle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    justify-content: center;
+}
+.filmDetail__posterandname{
+    width: 55%;
+    position: absolute;
+    bottom: 20px;
+}
+.filmDetail__name{
+    color: white;
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+.trailer{
+    margin-right: 3px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    color: white;
+    background-color: #5BC0DE;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: all 0.25s ease;
+}
+.trailer:hover{
+    background-color: #2993B2;
+}
+.play_film{
+    margin-left: 3px;
+    margin-top: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    color: white;
+    border-radius: 5px;
+    background-color: #d9534f;
+    border: none;
+    outline: none;
+    transition: all 0.25s ease;
+}
+.play_film:hover{
+    background-color: #C9302C;
+}
+.filmDetail__infomation{
+    padding-top: 40px;
+}
+.filmDetail__vote{
+    display: flex;
+    color: white;
+    width: 25%;
+    justify-content: space-between;
+}
+.filmDetail__item{
+    /* border: 1px solid red; */
+    padding-block: 5px;
+    
+}
+.filmDetail__info-detail{
+    margin-top: 10px;
+    color: white;
+}
+.filmDetail__desc-header{
+    color: #FF8A00;   
+    margin-bottom: 10px;
+}
+.filmDetail__desc-main{
+    color: rgb(223, 219, 219);
+}
+.filmDetail-video__title{
+    color: #FF8A00;   
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.film_detail-nonevideo{
+    font-size: 20px;
+    color: #FF8A00;
+}
+@media screen and (max-width : 991.98px) {
+    .filmDetail__surroTitle{
+        padding: 0;
+        justify-content: flex-start;
+    }
+    .filmDetail__posterandname{
+        bottom : 40px;
+    }
+}

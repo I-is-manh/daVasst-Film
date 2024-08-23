@@ -1,0 +1,112 @@
+.tv-show__title {
+    font-size: 25px;
+    color: #FF8A00;
+    margin-bottom: 15px;
+}
+
+.tv-show-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 5px;
+    transition: all 0.25s ease;
+}
+
+.tv-show-surro {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.tv-show__item {
+    padding: 5px;
+}
+.tv-show__name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 17px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: all 0.25s ease;
+}
+.tv-show__list {
+    padding-block: 20px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pagination__item {
+    margin: 5px;
+}
+
+.ant-pagination-item-link span {
+    color: white;
+}
+
+.ant-select-show-search:where(.css-dev-only-do-not-override-j9bb5n).ant-select:not(.ant-select-customize-input) .ant-select-selector  {
+    display: none;
+}
+
+.ant-pagination .ant-pagination-item a {
+    color: white;
+}
+
+:where(.css-dev-only-do-not-override-j9bb5n).ant-pagination .ant-pagination-item-active {
+    background-color: black;
+}
+
+:where(.css-dev-only-do-not-override-j9bb5n).ant-pagination .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+:where(.css-dev-only-do-not-override-j9bb5n).ant-pagination .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+    color: white;
+}
+.tv-show-surro::after{
+    content: '';
+	border-top: 15px solid transparent;
+	border-left: 30px solid white;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.tv-show-surro:hover::after{
+    opacity: 0.6;
+}
+.tv-show-surro:hover .tv-show-img{
+    transform: scale(1.07);
+}
+.tv-show-surro:hover .tv-show__name{
+    color: gold;
+}
+@media screen and (max-width : 767.98px) {
+    .tv-show__name{
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+@media screen and (max-width : 575.98px) {
+    .tv-show__name{
+        font-size: 14px;
+        padding: 3px;
+    }
+}
+

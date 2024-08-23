@@ -1,0 +1,206 @@
+.filmtop__container{
+    padding-block: 1.7rem;
+}
+.filmtop__title{
+    font-size: 30px;
+    color: #FF8A00;
+    width: 29%;
+}
+.filmtop__header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+.filmle__genre__child{
+    margin-left: 8px;
+}
+.filmtop__seeAll{
+    padding-block: 3px;
+    background: linear-gradient(to right, rgb(233, 57, 57), yellow);
+    border-radius: 10px;
+    color: black;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all 0.25s ease;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+.filmtop__genre{
+    display: flex;
+    align-items: center;
+    width: 30%;
+    flex-wrap: wrap;
+}
+.filmtop__seeAll:hover{
+    filter: contrast(2);
+}
+
+.filmtop__bigimg{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    /* border: 1px solid red; */
+}
+.filmtop__name{
+    width: 100%;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmtop__name-small{
+    width: 100%;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmtop__bigimg:hover .filmtop__name{
+    color: gold;
+}
+.filmtop__bigimg:hover .filmtop__img{
+    transform: scale(1.06);
+}
+.filmtop__img{
+    width: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    height: 100%;
+}
+.filmtop__under:hover .filmtop__name{
+    color: gold;
+}
+.filmtop__under:hover .filmtop__img{
+    transform: scale(1.07);
+}
+.filmtop__under{
+    overflow: hidden;
+}
+.filmtop__under::after{
+    content: '';
+	border-top: 15px solid transparent;
+	border-left: 30px solid white;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmtop__bigimg::after{
+    content: '';
+	border-top: 25px solid transparent;
+	border-left: 40px solid white;
+	border-bottom: 25px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmtop__bigimg:hover::after{
+    opacity: 0.6;
+}
+.filmtop__under:hover::after{
+    opacity: 0.6;
+}
+.filmtop__list{
+    height: 100%;
+    padding-left: 10px;
+}
+.filmtop__item{
+    height: calc(90% / 3);
+    overflow: hidden;
+}
+.filmtop__item:hover .filmtop__img{
+    transform: scale(1.07);
+}
+.filmtop__item:hover .filmtop__item-name{
+    color: gold;
+}
+.filmtop__item-name{
+    color: white;
+    font-size: 17px;
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 5;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    transition: all 0.25s ease;
+}
+.filmtop__item::after{
+    content: '';
+	border-top: 15px solid transparent;
+	border-left: 30px solid white;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmtop__item:hover::after{
+    opacity: 0.6;
+}
+.filmtop__item-surro{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+@media screen and (max-width : 1199.98px){
+    .filmtop__item{
+        height: fit-content;
+    }
+    .filmtop__list{
+        margin-top: 10px;
+        padding: 0;
+    }
+    
+}
+@media screen and (max-width : 767.98px) {
+    .filmtop__item-name{
+        font-size: 16px;
+        padding: 8px;
+    }
+    .filmtop__name{
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+@media screen and (max-width : 575.98px) {
+    .filmtop__item-name{
+        font-size: 14px;
+        padding: 3px;
+    }
+    .filmtop__name{
+        font-size: 16px;
+        padding: 8px;
+    }
+}
