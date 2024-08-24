@@ -1,0 +1,57 @@
+.tv-show_Detail-poster{
+    width: 100%;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 50%;
+    position: relative;
+    padding-left: 40px;
+}
+.tv-showDetail__img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid white;
+}
+.tv-showDetail__posterandname{
+    position: absolute;
+    bottom: 40px;
+    width: 55%;
+}
+.tv-showDetail__name{
+    font-size: 29px;
+    color: white;
+}
+.tv-showDetail__surroTitle{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-left: 20px;
+    justify-content: center;
+}
+.tv-show__infomation{
+    display: flex;
+}
+.tv-show__episode-title{
+    font-size: 25px;
+    color: #FF8A00;   
+    margin-bottom: 20px;
+}
+.tv-show__similar-title{
+    font-size: 25px;
+    color: #FF8A00;   
+    margin-bottom: 20px;
+}
+.filmDetail-video__title{
+    color: #FF8A00;   
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.film_detail-nonevideo{
+    font-size: 20px;
+    color: #FF8A00;
+}
+@media screen and (max-width : 575.98px) {
+    .tv-show_Detail-poster{
+        padding: 0;
+    }
+}
