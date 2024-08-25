@@ -6,7 +6,6 @@ import Film_Genre from "../../Film_Genre";
 import NavBar from "../NavBar_responsive";
 import Genre__Responsive from "../Film_Genre_responsive";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-
 function Header() {
     const [state, setState] = useState(false);
     const [navBar, setNavBar] = useState(false)
@@ -38,7 +37,7 @@ function Header() {
         <>
             <Row className="header" onClick={handleClick} justify={"space-between"}>
                 <Col xl={8} lg={8} md={8} sm={8} className="header__left">
-                    <Link to="/"><img src="" /></Link>
+                    <Link to="/"><img src="https://phimmoichillv.net/dev/images/logo.png" /></Link>
                 </Col>
                 <Col xl={16} lg={16} className="header__right">
                     <Row justify={"space-between"} className="header__right-main">
