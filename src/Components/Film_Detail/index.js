@@ -19,7 +19,7 @@ function Film_Detail() {
         queryFn : ()=>{return getVideoLe(id)},
     })
     let breadCumdata = [{
-        "title": <Link to={"/"}><HomeOutlined /> Home</Link>
+        "title": <Link to={"/"} className="hehe"><HomeOutlined /> Home</Link>
     }]
     useEffect(() => {
         const getFilm = async (id) => {
@@ -52,7 +52,7 @@ function Film_Detail() {
             breadCumdata.push(item)
         }
         breadCumdata.push({
-            "title": Moviename
+            "title": film.title
         })
     }
     if(openFilm == false){

@@ -67,8 +67,8 @@
     color: white;
 }
 
-:where(.css-dev-only-do-not-override-j9bb5n).ant-pagination .ant-pagination-item-active {
-    background-color: black;
+.ant-pagination .ant-pagination-item-active {
+    background-color: transparent;
 }
 
 :where(.css-dev-only-do-not-override-j9bb5n).ant-pagination .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
