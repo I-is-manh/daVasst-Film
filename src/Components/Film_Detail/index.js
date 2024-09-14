@@ -8,18 +8,17 @@ import Recommend from "../Home/FILMRECOM/Recommend";
 import FilmRelate from "../FilmRelate";
 import { useQuery,QueryClient } from "@tanstack/react-query"
 function Film_Detail() {
-    const queryClient =  new QueryClient()
     const { id, Moviename } = useParams()
     const [film, setFilm] = useState(null)
     const [credit, setCredit] = useState([])
     const [render, setRender] = useState(false)
     const [openFilm, setOpenFilm] = useState(false)
     const {data,isLoading,isError,refetch} = useQuery({
-        queryKey : ["video"],
+        queryKey : ["video",id],
         queryFn : ()=>{return getVideoLe(id)},
     })
     let breadCumdata = [{
-        "title": <Link to={"/"} className="hehe"><HomeOutlined /> Home</Link>
+        "title": <Link to={"/"}><HomeOutlined /> Home</Link>
     }]
     useEffect(() => {
         const getFilm = async (id) => {
@@ -29,7 +28,6 @@ function Film_Detail() {
         getFilm(id)
     }, [id])
     useEffect(() => {
-
         const getThem = async (id) => {
             const data = await getCredit(id)
             if (data.cast.length !== 0) {
@@ -55,9 +53,6 @@ function Film_Detail() {
             "title": film.title
         })
     }
-    if(openFilm == false){
-        queryClient.invalidateQueries(["video"])
-    }
     const formatDate = (dateString) => {
         const [year, month, day] = dateString.split('-');
         return `${year}`;
@@ -71,7 +66,8 @@ function Film_Detail() {
         return strGenre
     }
     const getKeyTrailer = () =>{
-        for(let i = 0;i < data.results.length ;i++){
+        if(data?.results === 0) return null
+        for(let i = 0;i < data?.results.length ;i++){
             if(data.results[i].type === "Teaser" || data.results[i].type === "Trailer"){
                 return data.results[i].key;
             }
@@ -128,8 +124,8 @@ function Film_Detail() {
                                     {film.title}({formatDate(film.release_date)})
                                 </p>
                                 <div className="filmDetail__btn">
-                                    <button className="trailer" onClick={() => { setOpenFilm(true);refetch() }}><YoutubeOutlined /> Trailer</button>
-                                    {film.status === "Released" ? <button className="play_film" onClick={() => { setOpenFilm(true);refetch() }}><PlayCircleOutlined /> Xem phim</button> : null}
+                                    <Link to={{pathname : "/xemphim",search : `key=${getKeyTrailer()}&name=${film.title}`}}><button className="trailer" onClick={() => { setOpenFilm(true);refetch() }}><YoutubeOutlined /> Trailer</button></Link>
+                                    {film.status === "Released" ? <Link to={{pathname : "/xemphim",search : `key=${getKeyTrailer()}&name=${film.title}`}}><button className="play_film" onClick={() => { setOpenFilm(true);refetch() }}><PlayCircleOutlined /> Xem phim</button></Link> : null}
                                 </div>
                             </div>
                         </Col>
@@ -173,12 +169,12 @@ function Film_Detail() {
                         {film.overview}
                     </p>
                 </div>
-                {openFilm && data ? <div className="filmDetail-video container">
+                {/* {openFilm && data ? <div className="filmDetail-video container">
                     <p className="filmDetail-video__title">Video</p>
                     {getKeyTrailer() !== null?<iframe src={`https://www.youtube.com/embed/${getKeyTrailer()}`}  style={{ width: "100%", height: "500px" ,borderRadius : "5px",border : "none"}}></iframe>:<p className="film_detail-nonevideo">Phim này không có video</p>}
-                </div> : null}
+                </div> : null} */}
                 <div className="filmDetail-relate">
-                    <FilmRelate value={id} f={setRender} state={render} f2={setOpenFilm}/>
+                    <FilmRelate value={id} f={setRender} state={render} f3={refetch}/>
                 </div>
             </div>}
         </>

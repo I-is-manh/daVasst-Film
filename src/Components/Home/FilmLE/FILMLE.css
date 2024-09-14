@@ -1,28 +1,21 @@
-.filmle__title {
-    font-size: 30px;
-    color: #FF8A00;
-    width: 24%;
-}
-
-.filmle {
-    width: 100%;
-}
-
-.filmle__header {
+/* header của list phim lẻ */
+.filmle__header { 
     display: flex;
     position: relative;
     align-items: center;
 }
-
+.filmle__title { 
+    font-size: 30px;
+    color: #FF8A00;
+    width: 24%;
+}
 .filmle__genre {
     display: flex;
     align-items: center;
     width: 30%;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    /* border: 1px solid red; */
 }
-
 .filmle__genre__child {
     padding-block: 3px;
     background: linear-gradient(to right, rgb(233, 57, 57), yellow);
@@ -31,9 +24,9 @@
     cursor: pointer;
     font-size: 15px;
     text-align: center;
-    font-family: "Be Vietnam Pro", sans-serif;
     margin-bottom: 5px;
     transition: all 0.25s ease;
+    font-family: "Be Vietnam Pro", sans-serif;
 }
 .filmle__genre__child:hover{
     filter: contrast(2);
@@ -43,11 +36,23 @@
     position: absolute;
     right: 0;
 }
-.filmle__BIGimg {
-    position: relative;
-    cursor: pointer;
+/* end header  */
+/* phần danh sách các phim lẻ */
+.filmle__container {
+    padding-block: 35px;
+}
+/* phần này là cái phim có ảnh to nhất */
+.filme-surro{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
     overflow: hidden;
-    
+}
+.filmle__BIGimg {
+    cursor: pointer;
+    margin-bottom: 10px;
+    position: relative;
+    height: 65%;
 }
 .filmle__BIGimg:hover .filmle__img{
     transform: scale(1.2);
@@ -55,50 +60,11 @@
 .filmle__BIGimg:hover .filmle__name{
     color: gold;
 }
-.filmle__under-left:hover .filmle__name{
-    color: gold;
-}
-
-.filmle__under-right:hover .filmle__name{
-    color: gold;
-}
-.filmle__under-left::after{
-    content: '';
-	border-top: 15px solid transparent;
-	border-left: 30px solid white;
-	border-bottom: 15px solid transparent;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    opacity: 0;
-    cursor: pointer;
+.filmle__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
     transition: all 0.25s ease;
-}
-.filmle__under-right::after{
-    content: '';
-	border-top: 15px solid transparent;
-	border-left: 30px solid white;
-	border-bottom: 15px solid transparent;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    opacity: 0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-.filmle__under-left:hover .filmle__img-small{
-    transform: scale(1.2);
-}
-.filmle__under-right:hover .filmle__img-small{
-    transform: scale(1.2);
-}
-.filmle__under-left:hover::after{
-    opacity: 0.6;
-}
-.filmle__under-right:hover::after{
-    opacity: 0.6;
 }
 .filmle__BIGimg::after{
     content: '';
@@ -116,45 +82,93 @@
 .filmle__BIGimg:hover::after{
     opacity: 0.6;
 }
+/* .filmle_name là class của thể p của các phim bên trái */
 .filmle__name{
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     font-size: 22px;
     color: white;
     position: absolute;
-    bottom: 0;
-    padding: 10px;
+    bottom: 0px;
+    padding: 7px;
     transition: all 0.25s ease;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
+/* end của phần phim có ảnh to nhất */
 .filmle__under-right {
     position: relative;
     cursor: pointer;
     overflow: hidden;
+    height: 100%;
 }
 .filmle__under-left {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-}
-.filmle__img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    transition: all 0.25s ease;
-}
-.filmle__container {
-    padding-block: 35px;
+    height: 100%;
 }
 .filmle__img-small {
     width: 100%;
-    height: 100%;
     object-fit: cover;
     border-radius: 5px;
     transition: all 0.25s ease;
 }
+.filmle__under-left::after{
+    content: '';
+	border-top: 15px solid transparent;
+	border-left: 30px solid white;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmle__under-left:hover .filmle__name{
+    color: gold;
+}
+.filmle__under-left:hover .filmle__img-small{
+    transform: scale(1.2);
+}
+.filmle__under-left:hover::after{
+    opacity: 0.6;
+}
+.filmle__under-right::after{
+    content: '';
+	border-top: 15px solid transparent;
+	border-left: 30px solid white;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmle__under-right:hover .filmle__name{
+    color: gold;
+}
+.filmle__under-right:hover .filmle__img-small{
+    transform: scale(1.2);
+}
+.filmle__under-right:hover::after{
+    opacity: 0.6;
+}
+
+/* end của phần phim bên trái */
+/* bắt đầu phần phim bên phải */
 .filmle__list{
     height: 100%;
     padding-left: 10px;
+}
+.filmle__item{
+    padding-inline: 5px ;
+    padding-bottom: 5px;
+    position: relative;
 }
 .filmle__img-list{
     width: 100%;
@@ -162,11 +176,6 @@
     cursor: pointer;
     transition: all 0.25s ease;
     border-radius: 5px;
-}
-.filmle__item{
-    padding-inline: 5px ;
-    padding-bottom: 5px;
-    position: relative;
 }
 .filmle__name-list{
     position: absolute;
@@ -177,14 +186,11 @@
     bottom: 0;
     padding: 5px;
 }
-.filmle__item-list:hover .filmle__img-list{
-    transform: scale(1.5);
-}
 .filmle__item-list{
     overflow: hidden;
     border-radius: 5px;
     padding-bottom: 5px;
-    padding-left: 5px;
+    padding-right: 8px;
 }
 .filmle__item-list::after{
     content: '';
@@ -199,6 +205,9 @@
     cursor: pointer;
     transition: all 0.25s ease;
 }
+.filmle__item-list:hover .filmle__img-list{
+    transform: scale(1.5);
+}
 .filmle__item-list:hover::after{
     opacity: 0.6;
 }
@@ -211,6 +220,16 @@
     position: relative;
     border-radius: 5px;
     overflow: hidden;
+}
+/* end của phần phim bên phải */
+@media screen and (max-width : 1199.98px) {
+    .filmle__list{
+        margin-top: 1rem;
+        padding: 0;
+    }
+    .filmle__item-list{
+        padding-left: 0;
+    }
 }
 @media screen and (max-width : 991.98px) {
     .filmle__list{
@@ -236,5 +255,11 @@
     .filmle__name-list{
         font-size: 16px;
         padding: 8px;
+    }
+}
+@media screen and (max-width : 379.98px) {
+    .filmle__name-list{
+        font-size: 13px;
+        padding: 6px;
     }
 }

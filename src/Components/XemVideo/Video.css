@@ -1,0 +1,10 @@
+.video__name{
+    margin-bottom: 15px;
+    font-size: 25px;
+    color: #FF8A00;
+}
+.video_null{
+    color: #FF8A00;
+    font-size: 30px;
+    padding: 20px;
+}

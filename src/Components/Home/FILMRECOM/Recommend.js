@@ -5,15 +5,22 @@ import { Row, Col } from "antd"
 import { getFilm } from "../../../Helper";
 import { Scrollbar } from 'react-scrollbars-custom';
 import { Link } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
 function Recommend() {
-    const [nowPlaying, setNowPlaying] = useState([]);
-    useEffect(() => {
-        const getList = async () => {
-            const data = await getFilm();
-            setNowPlaying(data.results);
-        }
-        getList()
-    }, [])
+    const [nowPlaying, setNowPlaying] = useState(null);
+    const getList = async () => {
+        const data = await getFilm();
+        return data
+    }
+    const { data } = useQuery({
+        queryKey : ["recommend"],
+        queryFn : getList,
+        staleTime : 6000 * 1000,
+        cacheTime : 6000 * 1000
+    })
+    useEffect(()=>{
+        setNowPlaying(data?.results)
+    },[data])
     const formatDate = (dateString) => {
         const [year, month, day] = dateString.split('-');
         return `${day}-${month}-${year}`;
@@ -26,7 +33,7 @@ function Recommend() {
                 </div>
                 <div className="recommend_list">
                     <Row className="recommend__content" justify={"space-around"} wrap={false} gutter={[, 10]}>
-                        {nowPlaying.map((item) => {
+                        {nowPlaying?.map((item) => {
                             return (
                                 <Col xl={5} lg={10} md={10} sm={12} xs={12} className="recommend__item" key={item.id}>
                                     <Link to={`/film_detail/${item.id}/${item.original_title}`}>

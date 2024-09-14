@@ -1,19 +1,14 @@
-.filmbo__title {
-    font-size: 30px;
-    color: #FF8A00;
-    width: 24%;
-}
-
-.filmbo {
-    width: 100%;
-}
-
+/* bắt đầu phần header của phim bộ */
 .filmbo__header {
     display: flex;
     position: relative;
     align-items: center;
 }
-
+.filmbo__title {
+    font-size: 30px;
+    color: #FF8A00;
+    width: 24%;
+}
 .filmbo__genre {
     display: flex;
     align-items: center;
@@ -43,62 +38,19 @@
     position: absolute;
     right: 0;
 }
+.filmbo__container{
+    margin-top: 20px;
+}
+/* end phần header của phim bộ */
+
+/* bắt đầu phần danh sách phim bộ */
+
 .filmbo__BIGimg {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    
-}
-.filmbo__BIGimg:hover .filmbo__img{
-    transform: scale(1.2);
-}
-.filmbo__BIGimg:hover .filmbo__name{
-    color: gold;
-}
-.filmbo__under-left:hover .filmbo__name{
-    color: gold;
-}
-
-.filmbo__under-right:hover .filmbo__name{
-    color: gold;
-}
-.filmbo__under-left::after{
-    content: '';
-	border-top: 15px solid transparent;
-	border-left: 30px solid white;
-	border-bottom: 15px solid transparent;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    opacity: 0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-.filmbo__under-right::after{
-    content: '';
-	border-top: 15px solid transparent;
-	border-left: 30px solid white;
-	border-bottom: 15px solid transparent;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    opacity: 0;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-.filmbo__under-left:hover .filmbo__img-small{
-    transform: scale(1.2);
-}
-.filmbo__under-right:hover .filmbo__img-small{
-    transform: scale(1.2);
-}
-.filmbo__under-left:hover::after{
-    opacity: 0.6;
-}
-.filmbo__under-right:hover::after{
-    opacity: 0.6;
+    height: 65%;
+    margin-bottom: 10px;
 }
 .filmbo__BIGimg::after{
     content: '';
@@ -113,8 +65,51 @@
     cursor: pointer;
     transition: all 0.25s ease;
 }
+.filmbo__BIGimg:hover .filmbo__img{
+    transform: scale(1.2);
+}
+.filmbo__BIGimg:hover .filmbo__name{
+    color: gold;
+}
 .filmbo__BIGimg:hover::after{
     opacity: 0.6;
+}
+.filmbo__img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.25s ease;
+    border-radius: 5px;
+}
+
+
+
+.filmbo__under-left {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
+}
+.filmbo__under-left::after{
+    content: '';
+	border-top: 15px solid transparent;
+	border-left: 30px solid white;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filmbo__under-left:hover::after{
+    opacity: 0.6;
+}
+.filmbo__under-left:hover .filmbo__name{
+    color: gold;
+}
+.filmbo__under-left:hover .filmbo__img-small{
+    transform: scale(1.2);
 }
 .filmbo__name{
     width: 100%;
@@ -123,27 +118,8 @@
     color: white;
     position: absolute;
     bottom: 0;
-    padding: 10px;
+    padding: 7px;
     transition: all 0.25s ease;
-}
-.filmbo__under-right {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-}
-.filmbo__under-left {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-}
-.filmbo__img {
-    width: 100%;
-    height: 100%;
-    transition: all 0.25s ease;
-    border-radius: 5px;
-}
-.filmbo__container {
-    padding-block: 35px;
 }
 .filmbo__img-small {
     width: 100%;
@@ -152,26 +128,24 @@
     border-radius: 5px;
     transition: all 0.25s ease;
 }
+
+
 .filmbo__list{
     height: 100%;
-}
-.filmbo__name-list{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: 17px;
-    width: 100%;
-    color: white;
-    bottom: 0;
-    left: 0;
-    padding: 5px;
-}
-.filmbo__item-list:hover .filmbo__img{
-    transform: scale(1.5);
 }
 .filmbo__item-list{
     cursor: pointer;
     padding-bottom: 8px;
     padding-left: 10px;
+}
+.filmbo__item-list:hover .filmbo__img{
+    transform: scale(1.5);
+}
+.filmbo__item-list:hover::after{
+    opacity: 0.6;
+}
+.filmbo__item-list:hover .filmbo__name-list{
+    color: gold;
 }
 .filmbo__item-list::after{
     content: '';
@@ -186,11 +160,15 @@
     cursor: pointer;
     transition: all 0.25s ease;
 }
-.filmbo__item-list:hover::after{
-    opacity: 0.6;
-}
-.filmbo__item-list:hover .filmbo__name-list{
-    color: gold;
+.filmbo__name-list{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 17px;
+    width: 100%;
+    color: white;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
 }
 .filmbo__list-right{
     height: 100%;
@@ -210,5 +188,46 @@
         padding: 0;
         padding-right: 10px;
         margin-bottom: 10px;
+    }
+}
+@media screen and (max-width : 767.98px) {
+    .filmbo__name{
+        font-size: 17px;
+        padding: 6px;
+
+    }
+
+}
+@media screen and (max-width : 576.98px) {
+    .filmbo__name{
+        font-size: 15px;
+        padding: 5px;
+
+    }
+    .filmbo__name-list{
+        font-size: 13px;
+        padding: 5px;
+    }
+}
+@media screen and (max-width : 320.98px) {
+    .filmbo__name{
+        font-size: 13px;
+        padding: 4px;
+
+    }
+    .filmbo__name-list{
+        font-size: 10px;
+        padding: 3px;
+    }
+    .filmle__genre__child{
+        font-size: 13px;
+        padding: 0px;
+    }
+    .filmbo__title{
+        font-size: 23px;
+    }
+    .filmbo__seeall{
+        font-size: 15px;
+        padding: 3px;
     }
 }

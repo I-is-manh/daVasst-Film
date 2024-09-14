@@ -27,14 +27,14 @@ function Footer() {
                         <li className="footer__item footer__active">Quốc gia</li>
                         <Link to={`/nation_film?nationID=US`}><li className="footer__item">Phim Mỹ</li></Link>
                         <Link to={`/nation_film?nationID=KR`}><li className="footer__item">Phim Hàn Quốc</li></Link>
-                        <Link to={`/nation_film?nationID=MO`}><li className="footer__item">Phim Trung Quốc</li></Link>
+                        <Link to={`/nation_film?nationID=CN`}><li className="footer__item">Phim Trung Quốc</li></Link>
                         <Link to={`/nation_film?nationID=TH`}><li className="footer__item">Phim Thái Lan</li></Link>
                         <Link to={`/nation_film?nationID=VN`}><li className="footer__item">Phim Việt Nam</li></Link>
                     </ul>
                 </Col>
                 <Col className="footer__column" xxl={5} xl={5} lg={5} md={5} sm={5} xs={5}>
                     <p className="footer__active footer__bq">Thông tin bản quyền</p>
-                    <p className="footer__info">Tất cả bản quyền đều thuộc về ông Nguyễn Văn Mạnh-(I-iss-Mhajn)</p>
+                    <p className="footer__info">Tất cả bản quyền thuộc về ông Nguyễn Văn Mạnh-(da Vasst)</p>
                 </Col>
             </Row>
         </div>

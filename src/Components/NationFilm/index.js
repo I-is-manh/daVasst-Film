@@ -2,37 +2,48 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Pagination } from "antd"
 import { Link, useSearchParams } from "react-router-dom";
 import "./NationFilm.css"
-import { getFilmBo } from "../../Helper";
+import { getFilmBo, getFilmBoTopAll } from "../../Helper";
+import { useQuery } from "@tanstack/react-query"
 function NationFilm() {
     const [searchParam, setSearchParam] = useSearchParams();
     const nationID = searchParam.get("nationID") || ""
     const [arrFilm, setArrFilm] = useState(null);
     const [currentPage, setCurrentPage] = useState(1)
+    const [total,setTotal] = useState(1)
     const handleChange = (e) => {
         setCurrentPage(e)
     }
-    useEffect(() => {
-        const getFilm = async () => {
-            const data = await getFilmBo(currentPage)
-            const data2 = data.results.filter((item) => {
-                if (item.origin_country.indexOf(nationID) !== -1) {
-                    return item
-                }
-            })
-            setArrFilm(data2)
+    const getFilm = async () => {
+        const data = await getFilmBoTopAll()
+        const data2 = data.filter(item => item.origin_country.includes(nationID)
+        )
+        return data2
+    }
+    const sliceArray = (arr) => {
+        if (arr) {
+            let arrSliced = arr
+            arrSliced = arrSliced.slice(currentPage * 20 - 20, currentPage * 20)
+            return arrSliced
         }
-        getFilm()
-    }, [nationID, currentPage])
+    }
+    const data = useQuery({
+        queryKey: ["nation",nationID],
+        queryFn: getFilm,
+    })
+    useEffect(() => {
+        setTotal(data.data?.length)
+        setArrFilm(sliceArray(data.data))
+    }, [data.data, currentPage])
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" })
-    }, [nationID, currentPage])
+    }, [currentPage])
     return (
         <div className="container nationFilm">
             <Row className="nationFilm-list">
                 {arrFilm && arrFilm.length !== 0 &&
-                    arrFilm.map((item) => {
+                    arrFilm.map((item, index) => {
                         return (
-                            <Col className="nationFilm-item" xxl={6} xl={6} md={12} sm={12} xs={24} key={item.id}>
+                            <Col className="nationFilm-item" xxl={6} xl={6} md={12} sm={12} xs={24} key={`${item.id}+${index}`}>
                                 <Link to={`/tv-show_detail/${item.id}/${item.original_title ? item.original_title : item.original_name}`}>
                                     <div className="nationFilm-surro">
                                         <img src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} className="nationFilm-img"></img>
@@ -46,7 +57,7 @@ function NationFilm() {
             </Row>
             <div className="pagination">
                 <Row className="pagination__main">
-                    <Pagination defaultCurrent={1} onChange={handleChange} total={10000} pageSize={20} />;
+                    <Pagination defaultCurrent={1} onChange={handleChange} total={total} pageSize={20} />;
                 </Row>
             </div>
         </div>
@@ -54,4 +65,3 @@ function NationFilm() {
     );
 }
 export default NationFilm
-// /tv-show_detail/:id/:Moviename

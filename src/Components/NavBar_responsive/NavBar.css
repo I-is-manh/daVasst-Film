@@ -1,5 +1,6 @@
 .navbar{
     display: none;
+    position: relative;
 }
 .navbar__active{
     display: none;
@@ -56,6 +57,13 @@
 }
 .header__text_res::placeholder{
     color: white;
+}
+.search_resp{
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 9999;
 }
 @media screen and (max-width : 991.98px) {
     .navbar{
