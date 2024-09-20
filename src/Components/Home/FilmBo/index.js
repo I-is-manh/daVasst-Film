@@ -24,7 +24,9 @@ function FilmBo() {
         queryKey : ["filmbo"],
         queryFn : getfilmbo,
         staleTime : Infinity,
-        cacheTime : Infinity
+        cacheTime : Infinity,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
     })
     useEffect(()=>{
         setArrFilm(data)

@@ -4,6 +4,14 @@
     padding-inline: 2rem;
     padding-block: 10px;
 }
+.header__left{
+    padding-left: 30px;
+}
+.header__logo{
+    width: 150px;
+    height: 80px;
+    object-fit: cover;
+}
 .header__search {
     padding-inline: 5px;
     display: flex;
@@ -134,5 +142,14 @@
         justify-content: center;
         cursor: pointer;
         align-items: center;
+    }
+}
+@media screen and (max-width : 575.98px) {
+    .header__logo{
+        width: 100px;
+        height: 60px;
+    }
+    .header__left{
+        padding-left: 0px;
     }
 }

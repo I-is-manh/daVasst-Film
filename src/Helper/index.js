@@ -44,7 +44,7 @@ export const getFilmLeTop = async (number) => {
 }
 export const getFilmLeTopAll = async () => {
     let page = 1
-    let total_page = 200
+    let total_page = 50
     let arrFilm = []
     while(page <= total_page){
         const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=vi&api_key=${api_key}&page=${page}`)
@@ -61,12 +61,12 @@ export const getFilmBoTop = async (number) => {
 }
 export const getFilmBoTopAll = async () => {
     let page = 1
-    let total_page = 1
+    let total_page = 50
     let arrFilm = []
     while(page <= total_page){
         const res = await fetch(`https://api.themoviedb.org/3/tv/top_rated?language=vi&api_key=${api_key}&page=${page}`)
         const data = await res.json();
-        total_page = data.total_pages
+        // total_page = data.total_pages
         page++
         arrFilm = [...arrFilm,...data.results]
     }

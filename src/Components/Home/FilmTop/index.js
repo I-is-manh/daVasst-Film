@@ -29,14 +29,18 @@ function FilmTop() {
         queryFn: getFilm,
         staleTime : Infinity,
         cacheTime : Infinity,
-        enabled : checkTypePhimLe
+        enabled : checkTypePhimLe,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
     })
     const data2 = useQuery({
         queryKey : ["upcomingBo",state],
         queryFn : getFilmBo1,
         staleTime : Infinity,
         cacheTime : Infinity,
-        enabled : checkTypePhimBo
+        enabled : checkTypePhimBo,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
     })
     useEffect(()=>{
         if(state === "Le" && data1.data){

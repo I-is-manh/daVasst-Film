@@ -16,7 +16,9 @@ function Recommend() {
         queryKey : ["recommend"],
         queryFn : getList,
         staleTime : 6000 * 1000,
-        cacheTime : 6000 * 1000
+        cacheTime : 6000 * 1000,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
     })
     useEffect(()=>{
         setNowPlaying(data?.results)

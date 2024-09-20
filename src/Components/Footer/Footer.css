@@ -33,4 +33,21 @@
     .footer__bq{
         font-size: 1.4rem;
     }
+    .footer__active{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width : 575.98px) {
+    .footer__item{
+        font-size: 15px;
+    }
+    .footer__info{
+        font-size: 16px;
+    }
+    .footer__bq{
+        font-size: 1.4rem;
+    }
+    .footer__active{
+        font-size: 20px;
+    }
 }
