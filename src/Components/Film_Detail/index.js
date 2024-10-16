@@ -42,6 +42,7 @@ function Film_Detail() {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [id])
+    
     if (film) {
         for (let i = 0; i < film.genres.length; i++) {
             const item = {
@@ -59,40 +60,40 @@ function Film_Detail() {
     };
     const getGenre = () => {
         let strGenre = ""
-        for (let i = 0; i < film.genres.length - 1; i++) {
-            strGenre += film.genres[i].name + ','
+        for (let i = 0; i < film?.genres?.length - 1; i++) {
+            strGenre += film.genres[i]?.name + ','
         }
-        strGenre += film.genres[film.genres.length - 1].name
+        strGenre += film?.genres[film?.genres?.length - 1]?.name
         return strGenre
     }
     const getKeyTrailer = () =>{
         if(data?.results === 0) return null
         for(let i = 0;i < data?.results.length ;i++){
-            if(data.results[i].type === "Teaser" || data.results[i].type === "Trailer"){
-                return data.results[i].key;
+            if(data.results[i]?.type === "Teaser" || data.results[i]?.type === "Trailer"){
+                return data.results[i]?.key;
             }
         }
         return null
     }
     const getDirector = () => {
         for (let i = 0; i < credit.length; i++) {
-            if (credit[i].known_for_department == "Directing" || credit[i].known_for_department == "Production") {
-                return credit[i].name
+            if (credit[i]?.known_for_department == "Directing" || credit[i]?.known_for_department == "Production") {
+                return credit[i]?.name
             }
         }
         return null
     }
     const getActing = () => {
         let acting = ""
-        if (credit.length == 0) {
+        if (credit?.length == 0) {
             return ""
         }
         for (let i = 0; i < 4; i++) {
-            if (credit[i].known_for_department == "Acting") {
-                acting += credit[i].name + ','
+            if (credit[i]?.known_for_department == "Acting") {
+                acting += credit[i]?.name + ','
             }
         }
-        acting += credit[credit.length - 1].name
+        acting += credit[credit?.length - 1]?.name
         acting += "..."
         return acting
     }
@@ -134,17 +135,17 @@ function Film_Detail() {
                 <div className="filmDetail__infomation container">
                     <div className="filmDetail__vote">
                         <Rate defaultValue={film.vote_average} allowClear allowHalf></Rate>
-                        <p className="filmDetail__votecnt"> Số lượt bình chọn : {film.vote_count}</p>
+                        <p className="filmDetail__votecnt"> Số lượt bình chọn : {film?.vote_count}</p>
                     </div>
                     <Row className="filmDetail__info-detail" gutter={[10, 10]}>
                         <Col className="filmDetail__item" xxl={8} xl={8} md={24} sm={24} xs={24}>
                             Trạng thái : {film.status == "Released" ? "Đang phát hành" : "Trailer"}
                         </Col>
                         <Col className="filmDetail__item" xxl={8} xl={8} md={24} sm={24} xs={24}>
-                            Năm phát hành : {formatDate(film.release_date)}
+                            Năm phát hành : {formatDate(film?.release_date)}
                         </Col>
                         <Col className="filmDetail__item" xxl={8} xl={8} md={24} sm={24} xs={24}>
-                            Quốc gia : {film.production_countries[0].name}
+                            Quốc gia : {film.production_countries[0]?.name}
                         </Col>
                         <Col className="filmDetail__item" xxl={8} xl={8} md={24} sm={24} xs={24}>
                             Thể loại : {getGenre()}
@@ -153,7 +154,7 @@ function Film_Detail() {
                             Đạo diễn : {getDirector() !== null ? getDirector() : "Chưa có thông tin của đạo diễn"}
                         </Col>}
                         <Col className="filmDetail__item" xxl={8} xl={8} md={24} sm={24} xs={24}>
-                            Điểm phổ biến : {film.popularity}
+                            Điểm phổ biến : {film?.popularity}
                         </Col>
                         <Col className="filmDetail__item" xxl={8} xl={8} md={24} sm={24} xs={24}>
                             Thời lượng : {getRuntime()}
@@ -166,7 +167,7 @@ function Film_Detail() {
                 <div className="filmDetail__desc container">
                     <h2 className="filmDetail__desc-header">Nội dung phim : </h2>
                     <p className="filmDetail__desc-main">
-                        {film.overview}
+                        {film?.overview}
                     </p>
                 </div>
                 {/* {openFilm && data ? <div className="filmDetail-video container">

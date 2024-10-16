@@ -1,5 +1,5 @@
 import "./Header.css"
-import React, { useRef, useState } from "react"
+import React, { useRef, useState,useEffect } from "react"
 import { Row, Col, Input, Dropdown } from "antd"
 import { SearchOutlined, SmileOutlined } from "@ant-design/icons"
 import Film_Genre from "../../Film_Genre";
@@ -15,9 +15,9 @@ function Header() {
     const [searchbox, setSearchBox] = useState(false)
     const [inputValue, setInputValue] = useState("")
     let resultsArr = []
-    const ref = useRef(null)
-    const ref2 = useRef(null)
-    const ref3 = useRef(null)
+    const refFilmGenre = useRef(null)
+    const refNavBar = useRef(null)
+    const refInput = useRef(null)
     const navi = useNavigate()
     const data1 = useQuery({
         queryKey: ["searchmovie",inputValue],
@@ -32,29 +32,40 @@ function Header() {
         resultsArr = resultsArr.slice(0, 9)
     }
     const handleClick = (e) => {
-        if (e.target === ref.current) {
+        console.log(e.target);
+        if (e.target === refFilmGenre.current) {
             setState(!state)
         }
         else {
             setState(false)
         }
     }
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (refFilmGenre.current && !refFilmGenre.current.contains(event.target)) {
+            setState(false);
+          }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [refFilmGenre]);
     const handleBar = (e) => {
         setNavBar(!navBar)
     }
     const handleChange = (e) => {
         if (e.key == "Enter") {
             navi(`/search_response/${e.target.value}`)
-            console.log("Tôi thích chị HjhNgojhantij ạ thật sự tôi rất muốn mối quan hệ này tiến xa hơn nhưng khả năng điều kiện không cho phép tôi không có xe và tôi cũng nghèo vô dụng nữa nhưng tôi vẫn muốn nói rằng là tôi rất thích chị");
             setSearchBox(false)
-            ref3.current.value = ""
-            ref3.current.focus();
+            refInput.current.value = ""
+            refInput.current.focus();
         }
     }
     const handleClick2 = (e) => {
-        navi(`/search_response/${ref3.current.value}`)
+        navi(`/search_response/${refInput.current.value}`)
     }
-    const handleChange2 = (e) => {
+    const handleChangeInput = (e) => {
         if (e.target.value.length === 0) {
             setSearchBox(false)
         }
@@ -65,8 +76,8 @@ function Header() {
     }
     const handleClickSearch = () => {
         setSearchBox(false)
-        ref3.current.value = ""
-        ref3.current.focus();
+        refInput.current.value = ""
+        refInput.current.focus();
     }
     return (
         <>
@@ -84,18 +95,18 @@ function Header() {
                                     search: "typeoffilm=phim-bo",
                                     state: { fromDashboard: true }
                                 }}>TV Show</NavLink>
-                                <p className="header__content" onClick={handleClick} ref={ref}>Film Genre</p>
+                                <p className="header__content" onClick={handleClick} ref={refFilmGenre}>Film Genre</p>
                             </div>
                         </Col>
                         <Col>
                             <div className="header__search">
-                                <input type="text" onKeyDown={handleChange} className="header__text" placeholder="Nội dung..." ref={ref3} onChange={handleChange2}></input>
+                                <input type="text" onKeyDown={handleChange} className="header__text" placeholder="Nội dung..." ref={refInput} onChange={handleChangeInput}></input>
                                 <SearchOutlined onClick={handleClick2} />
                             </div>
                         </Col>
                     </Row>
                 </Col>
-                <Col lg={3} md={3} sm={3} onClick={handleBar} className={navBar ? "nav_click nav-bar" : "nav-bar"} ref={ref2} >
+                <Col lg={3} md={3} sm={3} onClick={handleBar} className={navBar ? "nav_click nav-bar" : "nav-bar"} ref={refNavBar} >
                     <span className="bar_stick"></span>
                     <span className="bar_stick"></span>
                     <span className="bar_stick"></span>
