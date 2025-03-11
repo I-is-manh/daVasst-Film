@@ -3,12 +3,13 @@ import { useState,useEffect } from "react";
 import { Col,Row } from "antd";
 import { Link } from "react-router-dom";
 import "./Footer.css"
+import logo from "../../img/logodavasst.webp"
 function Footer() {
     return (  
         <div className="footer container-fluid">
             <Row className="container" justify={"space-between"}>
                 <Col className="footer__column" xxl={4} xl={4} lg={0} md={0} sm={0} xs={0}>
-                    <img src={`https://phimmoichillv.net/dev/images/logo.png`} className="footer__img" style={{cursor : "pointer"}}></img>
+                    <img src={logo} className="footer__img" style={{cursor : "pointer", width:"100px",height:"100px"}}></img>
                 </Col>
                 <Col className="footer__column" xxl={6} xl={6} lg={6} md={6} sm={6} xs={6}>
                     <ul className="footer__list">

@@ -60,7 +60,6 @@ function FilterBox(prop) {
     loadNam()
     const onFinish = (e) => {
         prop.f(e)
-        console.log(e);
     }
     return (
         <Form

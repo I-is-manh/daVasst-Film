@@ -15,8 +15,7 @@ function NationFilm() {
     }
     const getFilm = async () => {
         const data = await getFilmBoTopAll()
-        const data2 = data.filter(item => item.origin_country.includes(nationID)
-        )
+        const data2 = data.filter(item => item.origin_country.includes(nationID))
         return data2
     }
     const sliceArray = (arr) => {

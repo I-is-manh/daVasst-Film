@@ -29,7 +29,6 @@ function FilmLeTop() {
             setTotal(data.data.length)
         }
     }, [data.data, currentPage])
-    console.log(data.data);
     useEffect(() => {
         if (data.data && filter) {
             let filteredMovies = data.data

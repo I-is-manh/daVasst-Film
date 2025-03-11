@@ -32,7 +32,6 @@ function Header() {
         resultsArr = resultsArr.slice(0, 9)
     }
     const handleClick = (e) => {
-        console.log(e.target);
         if (e.target === refFilmGenre.current) {
             setState(!state)
         }
