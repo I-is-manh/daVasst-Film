@@ -4,19 +4,24 @@ import "./FilmGenreDetail.css"
 import { getFilmGenreDetail } from "../../Helper"
 import { Col, Row, Pagination } from "antd";
 import SearchBar from "../SearchBar";
+import FilterBox from "../FilterBox";
 function FilmGenreDetail() {
     const [arrFilm, setArrFilm] = useState(null)
     const [searchParam, setSearchParams] = useSearchParams();
+    const [filter,setFilter] = useState({
+        "quocgia" : undefined,
+        "release" : undefined
+    });
     const id = searchParam.get("genreID") || ""
     let type = searchParam.get("genre_name") || ""
     const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
         const getGenreDetail = async () => {
-            const data = await getFilmGenreDetail(id, currentPage);
+            const data = await getFilmGenreDetail(id, currentPage,filter);
             setArrFilm(data.results)
         }
         getGenreDetail()
-    }, [id,currentPage])
+    }, [id,currentPage,filter])
     useEffect(()=>{
         window.scrollTo({top : 0,behavior:"smooth"})
     },[id,currentPage])
@@ -48,7 +53,7 @@ function FilmGenreDetail() {
                         </p>
                     </Col>
                     <Col xxl={16} xl={16}>
-                        <SearchBar />
+                        <FilterBox f={setFilter}/>
                     </Col>
                 </Row>
             </div>

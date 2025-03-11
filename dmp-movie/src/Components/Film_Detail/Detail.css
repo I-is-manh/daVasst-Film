@@ -1,11 +1,11 @@
-:where(.css-dev-only-do-not-override-j9bb5n).ant-breadcrumb a {
+.ant-breadcrumb a {
     color: white;
     transition:  all 0.25s  ease;
 }
-:where(.css-dev-only-do-not-override-j9bb5n).ant-breadcrumb a:hover{
+.ant-breadcrumb a:hover{
     color: gold;
 }
-:where(.css-dev-only-do-not-override-j9bb5n).ant-breadcrumb [class^="ant-breadcrumb"]{
+.ant-breadcrumb [class^="ant-breadcrumb"]{
     color: #FF8A00;
 }
 .breadcrumb{
@@ -15,6 +15,9 @@
     width: 100%;
     aspect-ratio: 16 / 11;
     border: 1px solid white;
+}
+.hehe{
+    color: red;
 }
 .filmDetail_surroImg{
     width: 100%;
@@ -85,9 +88,7 @@
     justify-content: space-between;
 }
 .filmDetail__item{
-    /* border: 1px solid red; */
     padding-block: 5px;
-    
 }
 .filmDetail__info-detail{
     margin-top: 10px;

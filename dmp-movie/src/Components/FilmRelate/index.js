@@ -20,7 +20,7 @@ function FilmRelate(prop) {
     }, [])
     const handleClick = () =>{
         prop.f(!prop.state)
-        prop.f2(false)
+        prop.f3()
     }
     return (
         <div className="filmrelate container-fluid">
@@ -67,7 +67,7 @@ function FilmRelate(prop) {
                         {arrFilm &&
                             arrFilm.map((item) => {
                                 return (
-                                    <SwiperSlide style={{ height: "100%" }} key={item.id}>
+                                    <SwiperSlide style={{ height: "150px" }} key={item.id}>
                                         <Link to={`/film_detail/${item.id}/${item.original_title}`} onClick={handleClick}>
                                             <div className="filmrelate-surro" >
                                                 <img src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} alt="Ảnh film bị lỗi" className="filmrelate__img"></img>

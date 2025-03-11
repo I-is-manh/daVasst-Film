@@ -3,34 +3,53 @@ import "./FilmTop.css"
 import { Row, Col } from "antd"
 import { getFilmBo, getFilmBoTop, getFilmLeTop } from "../../../Helper";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 function FilmTop() {
     const [arrFilm, setArrFilm] = useState(null);
-    const [arrFilmParent, setArrFilmParent] = useState(null)
     const [state, setState] = useState('Le')
     let filmExist = []
-    useEffect(() => {
-        if (state == 'Le') {
-            const getFilm = async () => {
-                const data = await getFilmLeTop(1);
-                setArrFilm(data.results)
-                setArrFilmParent(data.results)
-            }
-            getFilm()
+    const getFilm = async () => {
+        const data = await getFilmLeTop(1);
+        return data.results
+    }
+    const getFilmBo1 = async () => {
+        const data = await getFilmBoTop(1);
+        return data.results
+    }
+    const checkTypePhimLe = () =>{
+        if(state === "Le") return true
+        else return false
+    }
+    const checkTypePhimBo = () => {
+        if(state === "Bo") return true 
+        else return false
+    }
+    const data1 = useQuery({
+        queryKey: ["upcomingLe",state],
+        queryFn: getFilm,
+        staleTime : Infinity,
+        cacheTime : Infinity,
+        enabled : checkTypePhimLe,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
+    })
+    const data2 = useQuery({
+        queryKey : ["upcomingBo",state],
+        queryFn : getFilmBo1,
+        staleTime : Infinity,
+        cacheTime : Infinity,
+        enabled : checkTypePhimBo,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
+    })
+    useEffect(()=>{
+        if(state === "Le" && data1.data){
+            setArrFilm(data1.data)
         }
-        else if (state == 'Bo') {
-            const getFilmBo1 = async () => {
-                const data = await getFilmBoTop(1);
-                const data2 = await getFilmBoTop(2);
-                const data3 = await getFilmBoTop(3);
-                let a = data.results
-                a = [...a, ...data2.results]
-                a = [...a, ...data3.results]
-                setArrFilm(data.results)
-                setArrFilmParent(data.results)
-            }
-            getFilmBo1();
+        else if(state === "Bo" && data2.data){
+            setArrFilm(data2.data)
         }
-    }, [state])
+    },[data1.data,data2.data])
     const handleClick = (genre) => {
         if (state == 'Le') {
             if (genre == 'Le') {
@@ -66,11 +85,7 @@ function FilmTop() {
                             <Col xl={5} lg={5} md={10} sm={15} xs={15} className="filmle__genre__child" value={28} onClick={() => { handleClick('Le') }}>Phim lẻ</Col>
                             <Col xl={5} lg={5} md={10} sm={15} xs={15} className="filmle__genre__child" value={16} onClick={() => { handleClick('Bo') }}>Phim bộ</Col>
                         </Row>
-                        <Link className="filmtop__seeAll" to={{
-                            pathname: "/tv_show",
-                            search: "typeoffilm=phim-top",
-                            state: { fromDashboard: true }
-                        }}>Xem tất cả</Link>
+                        <Link className="filmtop__seeAll" to={ state === "Bo" ? "/filmbotop" : "/filmletop" }>Xem tất cả</Link>
                     </div>
                     {arrFilm && arrFilm.length !== 0 &&
                         <Row className="filmtop__container">

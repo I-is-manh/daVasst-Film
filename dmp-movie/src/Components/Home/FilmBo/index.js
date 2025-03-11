@@ -3,30 +3,36 @@ import "./FilmBo.css"
 import { Row, Col } from "antd"
 import { getFilmBo } from "../../../Helper";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query"
 function FilmBo() {
     const [arrFilm, setArrFilm] = useState(null);
-    const [arrFilmParent, setArrFilmParent] = useState(null)
     let filmExist = [];
-    useEffect(() => {
-        const getfilmbo = async () => {
-            const data = await getFilmBo(1);
-            const data2 = await getFilmBo(2);
-            const data3 = await getFilmBo(3);
-            const data4 = await getFilmBo(4);
-            const data5 = await getFilmBo(5);
-            let a = data.results;
-            a = [...a, ...data2.results]
-            a = [...a, ...data3.results]
-            a = [...a, ...data4.results]
-            a = [...a, ...data5.results]
-            setArrFilm(a)
-            setArrFilmParent(a)
-        }
-        getfilmbo();
-    }, [])
+    const getfilmbo = async () => {
+        const data = await getFilmBo(1,null);
+        const data2 = await getFilmBo(2,null);
+        const data3 = await getFilmBo(3,null);
+        const data4 = await getFilmBo(4,null);
+        const data5 = await getFilmBo(5,null);
+        let a = data.results;
+        a = [...a, ...data2.results]
+        a = [...a, ...data3.results]
+        a = [...a, ...data4.results]
+        a = [...a, ...data5.results]
+        return a
+    }
+    const { data } = useQuery({
+        queryKey : ["filmbo"],
+        queryFn : getfilmbo,
+        staleTime : Infinity,
+        cacheTime : Infinity,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false
+    })
+    useEffect(()=>{
+        setArrFilm(data)
+    },[data])
     const handleClick = (id) => {
-        console.log(arrFilmParent);
-        let newArr = arrFilmParent.filter((item) => {
+        let newArr = data.filter((item) => {
             if (item.genre_ids.includes(id)) {
                 return item;
             }
@@ -66,24 +72,30 @@ function FilmBo() {
                         <Col xxl={10} xl={10} lg={24} md={24} sm={24} xs={24} className="filmbo__left">
                             <Link to={`/tv-show_detail/${arrFilm[0].id}/${arrFilm[0].original_name}`}>
                                 <div className="filmbo__BIGimg">
-                                    <img src={`https://image.tmdb.org/t/p/original${arrFilm[0].backdrop_path}`} className="filmbo__img"></img>
-                                    <p className="filmbo__name">{arrFilm[0].original_name}</p>
+                                    <div className="filmbo__item-surro">
+                                        <img src={`https://image.tmdb.org/t/p/original${arrFilm[0].backdrop_path}`} className="filmbo__img"></img>
+                                        <p className="filmbo__name">{arrFilm[0].original_name}</p>
+                                    </div>
                                 </div>
                             </Link>
-                            <Row gutter={[5]}>
-                                {arrFilm[1] && <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12} style={{ borderRadius: "5px" }}>
+                            <Row gutter={[5]} style={{height : "32%"}}>
+                                {arrFilm[1] && <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12} style={{ borderRadius: "5px",height:"100%" }}>
                                     <Link to={`/tv-show_detail/${arrFilm[1].id}/${arrFilm[1].original_name}`}>
                                         <div className="filmbo__under-left">
-                                            <img src={`https://image.tmdb.org/t/p/original${arrFilm[1].backdrop_path}`} className="filmbo__img-small"></img>
-                                            <p className="filmbo__name">{arrFilm[1].original_name}</p>
+                                            <div className="filmbo__item-surro">
+                                                <img src={`https://image.tmdb.org/t/p/original${arrFilm[1].backdrop_path}`} className="filmbo__img-small"></img>
+                                                <p className="filmbo__name">{arrFilm[1].original_name}</p>
+                                            </div>
                                         </div>
                                     </Link>
                                 </Col>}
-                                {arrFilm[2] && <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12} style={{ borderRadius: "5px" }}>
+                                {arrFilm[2] && <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12} style={{ borderRadius: "5px",height:"100%" }}>
                                     <Link to={`/tv-show_detail/${arrFilm[2].id}/${arrFilm[2].original_name}`}>
                                         <div className="filmbo__under-left">
-                                            <img src={`https://image.tmdb.org/t/p/original${arrFilm[2].backdrop_path}`} className="filmbo__img-small"></img>
-                                            <p className="filmbo__name">{arrFilm[2].original_name}</p>
+                                            <div className="filmbo__item-surro">
+                                                <img src={`https://image.tmdb.org/t/p/original${arrFilm[2].backdrop_path}`} className="filmbo__img-small"></img>
+                                                <p className="filmbo__name">{arrFilm[2].original_name}</p>
+                                            </div>
                                         </div>
                                     </Link>
                                 </Col>}

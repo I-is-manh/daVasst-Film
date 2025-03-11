@@ -3,12 +3,13 @@ import { useState,useEffect } from "react";
 import { Col,Row } from "antd";
 import { Link } from "react-router-dom";
 import "./Footer.css"
+import logo from "../../img/logodavasst.webp"
 function Footer() {
     return (  
         <div className="footer container-fluid">
             <Row className="container" justify={"space-between"}>
                 <Col className="footer__column" xxl={4} xl={4} lg={0} md={0} sm={0} xs={0}>
-                    <img src={`https://phimmoichillv.net/dev/images/logo.png`} className="footer__img" style={{cursor : "pointer"}}></img>
+                    <img src={logo} className="footer__img" style={{cursor : "pointer", width:"100px",height:"100px"}}></img>
                 </Col>
                 <Col className="footer__column" xxl={6} xl={6} lg={6} md={6} sm={6} xs={6}>
                     <ul className="footer__list">
@@ -27,14 +28,14 @@ function Footer() {
                         <li className="footer__item footer__active">Quốc gia</li>
                         <Link to={`/nation_film?nationID=US`}><li className="footer__item">Phim Mỹ</li></Link>
                         <Link to={`/nation_film?nationID=KR`}><li className="footer__item">Phim Hàn Quốc</li></Link>
-                        <Link to={`/nation_film?nationID=MO`}><li className="footer__item">Phim Trung Quốc</li></Link>
+                        <Link to={`/nation_film?nationID=CN`}><li className="footer__item">Phim Trung Quốc</li></Link>
                         <Link to={`/nation_film?nationID=TH`}><li className="footer__item">Phim Thái Lan</li></Link>
                         <Link to={`/nation_film?nationID=VN`}><li className="footer__item">Phim Việt Nam</li></Link>
                     </ul>
                 </Col>
                 <Col className="footer__column" xxl={5} xl={5} lg={5} md={5} sm={5} xs={5}>
                     <p className="footer__active footer__bq">Thông tin bản quyền</p>
-                    <p className="footer__info">Tất cả bản quyền đều thuộc về ông Nguyễn Văn Mạnh-(I-iss-Mhajn)</p>
+                    <p className="footer__info">Tất cả bản quyền thuộc về ông Nguyễn Văn Mạnh-(da Vasst)</p>
                 </Col>
             </Row>
         </div>

@@ -1,26 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./UpComing.css"
 import { Row, Col } from "antd"
-import { getUpComing } from "../../../Helper";
+import { getUpComingLe } from "../../../Helper";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query"
 function FilmUpComing() {
     const [arrFilm, setArrFilm] = useState(null);
-    useEffect(() => {
-        const getFilm = async () => {
-            const data = await getUpComing(1);
-            setArrFilm(data.results)
-        }
-        getFilm();
-    }, [])
+    const getFilm = async () => {
+        const data = await getUpComingLe(1);
+        return data
+    }
+    const { data } = useQuery({
+        queryKey : ["upcoming"],
+        queryFn : getFilm,
+        staleTime : 6000 * 1000,
+        cachTime : 6000 * 1000
+    })
+    useEffect(()=>{
+        setArrFilm(data?.results)
+    },[data])
     return (
         <div className="upcoming container-fluid">
             <div className="container">
                 <div className="upcoming__header">
                     <p className="upcoming__title">Phim mới sắp chiếu</p>
                     <Link className="upcoming__seeAll" to={{
-                        pathname : "/tv_show",
-                        search : "typeoffilm=phim-upcoming",
-                        state: { fromDashboard: true }
+                        pathname : "/listupcoming",
                     }}>Xem tất cả</Link>
                 </div>
                 {arrFilm && arrFilm.length !== 0 &&
@@ -39,7 +44,7 @@ function FilmUpComing() {
                                                 <img src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} className="tv-show-img"></img>
                                                 <p className="tv-show__name">{item.original_title ? item.original_title : item.original_name}</p>
                                             </div>
-                                        </Link> }
+                                        </Link>}
                                     </Col> : null}
                                 </>
                             )

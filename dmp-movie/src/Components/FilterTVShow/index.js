@@ -1,9 +1,10 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import "./SearchBar.css"
-import { Col, Row, Form, Select } from "antd"
-import { getGenre, getNation } from "../../Helper";
-function SearchBar(prop) {
+import "./FilterTV.css"
+import { Form, Select } from "antd"
+import { getGenreTV } from "../../Helper";
+import { useQuery } from "@tanstack/react-query";
+function FilterTV(prop) {
     const [genre, setGenre] = useState(null);
     let Option_Genre = []
     let Option_Nation = [
@@ -12,15 +13,15 @@ function SearchBar(prop) {
             "label": "Hoa Kỳ"
         },
         {
-           "value": "CN",
+            "value": "CN",
             "label": "Trung Quốc"
         },
         {
             "value": "CA",
-           "label": "Canada"
+            "label": "Canada"
         },
         {
-           "value": "FR",
+            "value": "FR",
             "label": "Pháp"
         },
         {
@@ -33,7 +34,7 @@ function SearchBar(prop) {
         },
         {
             "value": "GB",
-           "label": "Vương quốc Anh"
+            "label": "Vương quốc Anh"
         },
         {
             "value": "IN",
@@ -49,14 +50,16 @@ function SearchBar(prop) {
         },
     ]
     let Option_Nam = []
+    const { data } = useQuery({
+        queryKey: ["Genre"],
+        queryFn: getGenreTV,
+        staleTime: Infinity,
+        cacheTime: Infinity
+    })
     useEffect(() => {
-        const getListGenre = async () => {
-            const data = await getGenre()
-            setGenre(data.genres)
-        }
-        getListGenre()
-    }, [])
-    const loadSelect = () =>{
+        setGenre(data?.genres)
+    }, [data])
+    const loadSelect = () => {
         if (genre) {
             for (let i = 0; i < genre.length; i++) {
                 const item = {
@@ -87,7 +90,7 @@ function SearchBar(prop) {
             <Form.Item
                 name={"with_genres"}
                 className="form__item"
-                style={{width : 150}}
+                style={{ width: 150 }}
             >
                 <Select
                     placeholder="Thể loại"
@@ -98,7 +101,7 @@ function SearchBar(prop) {
             <Form.Item
                 className="form__item"
                 name={"with_origin_country"}
-                style={{width : 150}}
+                style={{ width: 150 }}
             >
                 <Select
                     allowClear
@@ -109,7 +112,7 @@ function SearchBar(prop) {
             <Form.Item
                 className="form__item"
                 name={"primary_release_year"}
-                style={{width : 150}}
+                style={{ width: 150 }}
             >
                 <Select
                     allowClear
@@ -118,12 +121,12 @@ function SearchBar(prop) {
                 />
             </Form.Item>
             <Form.Item
-            className="form__item"
+                className="form__item"
             >
-                <button tyle="submit" className="searchbar__search">Tìm kiếm</button>
+                <button tyle="submit" className="filtertv__search">Tìm kiếm</button>
             </Form.Item>
         </Form>
     );
 }
 
-export default SearchBar;
+export default FilterTV;

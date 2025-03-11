@@ -21,5 +21,4 @@ function Film_Genre() {
         </div>
     );
 }
-
 export default Film_Genre;
