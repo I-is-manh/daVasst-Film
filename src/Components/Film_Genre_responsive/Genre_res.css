@@ -1,0 +1,27 @@
+.film_item:hover{
+    color: gold;
+}
+.film_item{
+    color: white;
+}
+.navbar__li{
+    font-size: 1.3em;
+    width: 100%;
+    text-align: center;
+    padding-block: 1em;
+    cursor: pointer;
+}
+.list_film{
+    animation-name: fade;
+    animation-duration: 0.45s;
+    animation-timing-function: ease-in;
+}
+@keyframes fade{
+    from{
+        margin-top: -50px;
+        opacity: 0.5;
+    }
+    to{
+        opacity: 1;
+    }
+}

@@ -1,0 +1,25 @@
+.form{
+    width: 100%;
+}
+.form__item{
+    margin-left: 5px;
+}
+.filtertv__search{
+    padding-inline: 7px;
+    padding-block: 5px;
+    background: linear-gradient(to right, rgb(233, 57, 57), yellow);
+    border-radius: 10px;
+    color: black;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+    font-family: "Be Vietnam Pro", sans-serif;
+    margin-bottom: 5px;
+    transition: all 0.25s ease;
+    word-break: break-all;
+    outline: none;
+    border: none;
+}
+.filtertv__search:hover{
+    filter: contrast(2);
+}

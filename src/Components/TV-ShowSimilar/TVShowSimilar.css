@@ -1,0 +1,29 @@
+.tv-show__similar-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+.tv-show__similar-name{
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 6px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-bottom-left-radius:5px ;
+    border-bottom-right-radius:5px ;
+    width: 100%;
+    transition: all 0.25s ease;
+}
+.tv-show-surro{
+    position: relative;
+    border-radius: 5px;
+}
+.tv-show-surro:hover .tv-show__similar-name{
+    color: gold;
+}
+.tv-show-surro:hover .tv-show__similar-img{
+    transform: scale(1.09);
+}
