@@ -22,4 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-./src/Helper/*.js
+./src/Helper/index.js
+dmp-movie/src/Helper/index.js

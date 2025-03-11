@@ -8,6 +8,7 @@ export const getFilm = async () => {
     const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}&language=vi&page=1`);
     const data = await res.json();
     return data;
+    
 }
 export const getFilmLe = async (number, filter) => {
     let str = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=${number}&language=vi&api_key=${api_key}`;
