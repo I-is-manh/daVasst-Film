@@ -1,4 +1,6 @@
+
 const api_key = process.env.REACT_APP_API_KEY;
+
 export const getGenre = async () => {
     const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}&language=vi`)
     const data = await res.json();

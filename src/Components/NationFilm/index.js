@@ -7,7 +7,7 @@ import { getFilmByNation } from "../../Helper";
 function NationFilm() {
     const [searchParam, setSearchParam] = useSearchParams();
     const nationID = searchParam.get("nationID") || ""
-    const [arrFilm, setArrFilm] = useState(null);
+    const [arrFilm, setArrFilm] = useState([]);
     const [currentPage, setCurrentPage] = useState(1)
     const [total,setTotal] = useState(1)
     const handleChange = (e) => {
