@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Pagination } from "antd"
 import { Link, useSearchParams } from "react-router-dom";
 import "./NationFilm.css"
-import { getFilmBo, getFilmBoTopAll } from "../../Helper";
 import { useQuery } from "@tanstack/react-query"
+import { getFilmByNation } from "../../Helper";
 function NationFilm() {
     const [searchParam, setSearchParam] = useSearchParams();
     const nationID = searchParam.get("nationID") || ""
@@ -14,24 +14,23 @@ function NationFilm() {
         setCurrentPage(e)
     }
     const getFilm = async () => {
-        const data = await getFilmBoTopAll()
-        const data2 = data.filter(item => item.origin_country.includes(nationID))
-        return data2
+        const data = await getFilmByNation(nationID,currentPage)
+        return data
     }
-    const sliceArray = (arr) => {
-        if (arr) {
-            let arrSliced = arr
-            arrSliced = arrSliced.slice(currentPage * 20 - 20, currentPage * 20)
-            return arrSliced
-        }
-    }
+    // const sliceArray = (arr) => {
+    //     if (arr) {
+    //         let arrSliced = arr
+    //         arrSliced = arrSliced.slice(currentPage * 20 - 20, currentPage * 20)
+    //         return arrSliced
+    //     }
+    // }
     const data = useQuery({
-        queryKey: ["nation",nationID],
+        queryKey: ["page",currentPage],
         queryFn: getFilm,
     })
     useEffect(() => {
         setTotal(data.data?.length)
-        setArrFilm(sliceArray(data.data))
+        setArrFilm(data.data?.results)
     }, [data.data, currentPage])
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" })
