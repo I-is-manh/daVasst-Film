@@ -13,20 +13,9 @@ function NationFilm() {
     const handleChange = (e) => {
         setCurrentPage(e)
     }
-    const getFilm = async () => {
-        const data = await getFilmByNation(nationID,currentPage)
-        return data
-    }
-    // const sliceArray = (arr) => {
-    //     if (arr) {
-    //         let arrSliced = arr
-    //         arrSliced = arrSliced.slice(currentPage * 20 - 20, currentPage * 20)
-    //         return arrSliced
-    //     }
-    // }
     const data = useQuery({
-        queryKey: ["page",currentPage],
-        queryFn: getFilm,
+        queryKey: ["nationID",nationID,"page",currentPage],
+        queryFn: () => getFilmByNation(nationID,currentPage)
     })
     useEffect(() => {
         setTotal(data.data?.length)
@@ -34,7 +23,7 @@ function NationFilm() {
     }, [data.data, currentPage])
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" })
-    }, [currentPage])
+    }, [currentPage,nationID])
     return (
         <div className="container nationFilm">
             <Row className="nationFilm-list">

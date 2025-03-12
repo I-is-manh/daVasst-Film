@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 
-./src/Helper/index.js
-./.env
+src/Helper/index.js
+.env
 
 
